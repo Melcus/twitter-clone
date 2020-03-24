@@ -1,0 +1,2 @@
+# m h dom mon dow user command
+* * * * * www-data cd /var/www/application && ./artisan schedule:run --quiet >> /var/log/cron.log 2>&1

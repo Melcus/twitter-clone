@@ -1,0 +1,66 @@
+[mysqld]
+
+datadir = /data/mysql
+
+#################################################
+## Charset
+
+character-set-server=utf8mb4
+collation-server=utf8mb4_general_ci
+
+#################################################
+## Buffers
+
+key_buffer_size                 = 200M
+query_cache_size                = 100M
+
+innodb_buffer_pool_size         = 250M
+innodb_log_buffer_size          = 10M
+innodb_file_per_table
+
+
+tmp_table_size      = 200M
+max_heap_table_size = 200M
+
+open-files-limit  = 2048
+thread_cache_size = 12
+
+# Fast SQL import
+local-infile=1
+
+#################################################
+## Misc
+
+## direct access to files, avoid OS-caching (not possible in docker)
+; innodb_flush_method=O_DIRECT
+
+transaction-isolation=REPEATABLE-READ
+;transaction-isolation=READ-COMMITTED
+
+#################################################
+## Query cache
+
+query_cache_limit = 512M
+query_cache_size  = 512M
+query_cache_type  = 1
+
+#################################################
+## Query log
+
+slow-query-log
+slow_query_log_file = /dev/stdout
+long_query_time     = 1
+; log-queries-not-using-indexes
+
+#################################################
+## Connections
+##
+## keep connections low because each connection
+## will have their own buffers
+## - prevent swapping here -
+
+max_connections    = 150
+max_allowed_packet = 256M
+
+#typo3 workspaces do not like strict mode
+sql_mode=NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION

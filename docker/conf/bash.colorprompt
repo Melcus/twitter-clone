@@ -1,0 +1,15 @@
+# color the prompt according to $APP_ENV variable
+case "$APP_ENV" in
+    production)
+        PS1='\e[41m\n=== $APP_ENV ===\e[m\n\u@\h:\w\$ '
+        ;;
+    showroom)
+        PS1='\e[45m$APP_ENV\e[m \u@\h:\w\$ '
+        ;;
+    testing)
+        PS1='\e[43m$APP_ENV\e[m \u@\h:\w\$ '
+        ;;
+    local)
+        PS1='\e[42m$APP_ENV\e[m \u@\h:\w\$ '
+        ;;
+esac

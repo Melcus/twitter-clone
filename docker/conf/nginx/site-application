@@ -1,0 +1,62 @@
+# Default server
+server {
+    listen       80 default_server;
+    server_name  _;
+
+    client_body_buffer_size 10M;
+    client_max_body_size    250M;
+
+    root   /var/www/application/public;
+    index  index.php index.html index.htm;
+
+    error_log /dev/stdout warn;
+
+    #do not spam graylog with 404s
+    log_not_found off;
+
+    set_real_ip_from 172.0.0.0/8;
+    real_ip_header X-Forwarded-For;
+
+    # Enable gzip compression
+    gzip  on;
+
+    # Set the response header Vary: Accept-Encoding.
+    # Some proxies have a bug in that they serve compressed content to browsers that don't support it.
+    # By setting the Vary: Accept-Encoding header, you instruct proxies to store both a compressed and
+    # uncompressed version of the content.
+    gzip_vary on;
+
+    # Enables or disables gzipping of responses for proxied requests depending on the request and response.
+    gzip_proxied any;
+
+    # This tells nginx what file types to compress (text/html is always compressed)
+    gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript image/svg+xml;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location /nginx_status {
+        stub_status on;
+        access_log   off;
+        allow 127.0.0.1;
+	    allow 160.44.198.36;
+	    allow 172.18.0.1;
+        deny all;
+    }
+
+    location ~ \.php$ {
+	try_files $uri =404;
+        include /etc/nginx/fastcgi_params;
+        fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include /etc/nginx/fastcgi_params-extra;
+        fastcgi_intercept_errors on;
+        fastcgi_buffer_size 128k;
+        fastcgi_buffers 256 16k;
+        fastcgi_busy_buffers_size 256k;
+        fastcgi_temp_file_write_size 256k;
+        fastcgi_read_timeout 300;
+    }
+}
