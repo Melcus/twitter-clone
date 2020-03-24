@@ -1,4 +1,4 @@
-### Docker environment blueprint
+### Twitter clone - Twooter
 ---
 ### Services
     - nginx 1.17.6
