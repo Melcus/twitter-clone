@@ -14,8 +14,13 @@ services:
       - VIRTUAL_PORT=80
     volumes:
       - ./src:/var/www/application
+    labels:
+      - "traefik.http.routers.twooter.rule=Host(`twooter.local`)"
+      - "traefik.http.routers.twooter.entrypoints=web"
+      - "traefik.enable=true"
     networks:
       - laravel
+      - traefik
 
   mysql:
     container_name: application_mysql
@@ -41,4 +46,8 @@ volumes:
   application_mysql:
 
 networks:
+  traefik:
+    external:
+      name: traefik
   laravel:
+    external: false

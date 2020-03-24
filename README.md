@@ -1,10 +1,10 @@
 ### Twitter clone - Twooter
 ---
 ### Services
-    - nginx 1.17.6
+    - nginx latest
     - php 7.4.X
     - mysql:8
-    - redis
+    - redis:latest
 
 ### Build the containers 
 `make build`    
