@@ -9,8 +9,11 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import Vuex from 'vuex'
-
 Vue.use(Vuex)
+
+import VueObserveVisibilityPlugin from "vue-observe-visibility";
+Vue.use(VueObserveVisibilityPlugin)
+
 
 /**
  * The following block of code may be used to automatically register your
