@@ -14,6 +14,8 @@ Vue.use(Vuex)
 import VueObserveVisibilityPlugin from "vue-observe-visibility";
 Vue.use(VueObserveVisibilityPlugin)
 
+Vue.prototype.$user = User
+
 
 /**
  * The following block of code may be used to automatically register your
