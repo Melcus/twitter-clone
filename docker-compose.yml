@@ -8,6 +8,7 @@ services:
       dockerfile: ./docker/Dockerfile
     ports:
       - "5620:80"
+      - "6001:6001"
     environment:
       - APP_ENV=local
       - VIRTUAL_HOST=twooter.local

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -75,5 +76,13 @@ class User extends Authenticatable
         return $this->hasManyThrough(
             Tweet::class, Follower::class, 'user_id', 'user_id', 'id', 'following_id'
         );
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function tweets(): HasMany
+    {
+        return $this->hasMany(Tweet::class);
     }
 }

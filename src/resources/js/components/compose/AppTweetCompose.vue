@@ -1,10 +1,11 @@
 <template>
-    <form class="flex">
+    <form class="flex" @submit.prevent="submit">
         <div class="mr-3">
             <img :src="$user.avatar" class="w-12 rounded-full"/>
         </div>
         <div class="flex-grow">
             <textarea
+                v-model="form.body"
                 class="bg-gray-900 w-full outline-none text-gray-300 text-lg resize-none mb-2"
                 placeholder="What's happening"
                 autofocus
@@ -27,5 +28,20 @@
 </template>
 
 <script>
+    import axios from 'axios'
 
+    export default {
+        data() {
+            return {
+                form: {
+                    body: ""
+                }
+            }
+        },
+        methods: {
+            async submit() {
+                await axios.post('/api/tweets', this.form)
+            }
+        }
+    }
 </script>

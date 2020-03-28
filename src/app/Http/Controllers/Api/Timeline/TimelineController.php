@@ -12,12 +12,11 @@ use Illuminate\Http\Request;
  */
 class TimelineController extends Controller
 {
-    // auth
-
     public function index(Request $request)
     {
         $tweets = $request->user()
             ->tweetsFromFollowing()
+            ->latest()
             ->paginate(12);
 
         return new TweetCollection($tweets);

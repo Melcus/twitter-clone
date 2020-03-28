@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Tweet extends Model
 {
+    protected $guarded = [];
+
     /**
      * @return BelongsTo
      */
