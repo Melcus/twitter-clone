@@ -16,10 +16,13 @@ class CreateTweetsTable extends Migration
         Schema::create('tweets', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->index();
-            $table->text('body');
+            $table->foreignId('original_tweet_id')->index()->nullable();
+            $table->text('body')->nullable();
+            $table->string('type');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('original_tweet_id')->references('id')->on('tweets');
         });
     }
 

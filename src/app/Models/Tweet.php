@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Class Tweet
@@ -19,5 +20,13 @@ class Tweet extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function originalTweet(): HasOne
+    {
+        return $this->hasOne(Tweet::class, 'id', 'original_tweet_id');
     }
 }

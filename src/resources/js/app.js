@@ -1,21 +1,16 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
-
 window.Vue = require('vue');
 
 import Vuex from 'vuex'
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 import VueObserveVisibilityPlugin from "vue-observe-visibility";
-Vue.use(VueObserveVisibilityPlugin)
+Vue.use(VueObserveVisibilityPlugin);
 
-Vue.prototype.$user = User
+import {InlineSvgPlugin} from 'vue-inline-svg';
+Vue.use(InlineSvgPlugin);
 
+Vue.prototype.$user = User;
 
 /**
  * The following block of code may be used to automatically register your

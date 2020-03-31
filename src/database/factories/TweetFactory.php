@@ -4,6 +4,7 @@
 
 use App\Models\Tweet;
 use App\Models\User;
+use App\Prototypes\Tweets\TweetType;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -22,5 +23,6 @@ $factory->define(Tweet::class, function (Faker $faker) {
     return [
         'user_id' => factory(User::class),
         'body'    => $faker->sentence,
+        'type'    => TweetType::TWEET
     ];
 });

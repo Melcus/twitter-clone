@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\Timeline\TimelineController;
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
