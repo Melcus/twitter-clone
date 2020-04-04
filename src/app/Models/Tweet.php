@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
@@ -28,5 +29,13 @@ class Tweet extends Model
     public function originalTweet(): HasOne
     {
         return $this->hasOne(Tweet::class, 'id', 'original_tweet_id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function likes(): HasMany
+    {
+        return $this->hasMany(Like::class);
     }
 }

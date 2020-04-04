@@ -26,10 +26,12 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 import timeline from "./store/timeline";
+import likes from "./store/likes";
 
 const store = new Vuex.Store({
     modules: {
-        timeline
+        timeline,
+        likes
     }
 })
 

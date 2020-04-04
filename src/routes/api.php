@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Timeline\TimelineController;
 use App\Http\Controllers\Api\Tweets\TweetController;
+use App\Http\Controllers\Api\Tweets\TweetLikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ use App\Http\Controllers\Api\Tweets\TweetController;
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/timeline', [TimelineController::class, 'index']);
     Route::post('/tweets', [TweetController::class, 'store']);
+    Route::post('/tweets/{tweet}/likes', [TweetLikeController::class, 'store']);
+    Route::delete('/tweets/{tweet}/likes', [TweetLikeController::class, 'destroy']);
 });
 
 

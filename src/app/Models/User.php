@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * Class User
+ * @package App\Models
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -49,6 +53,15 @@ class User extends Authenticatable
     }
 
     /**
+     * @param Tweet $tweet
+     * @return bool
+     */
+    public function hasLiked(Tweet $tweet)
+    {
+        return $this->likes()->where('tweet_id', $tweet->id)->exists();
+    }
+
+    /**
      * @return BelongsToMany
      */
     public function following(): BelongsToMany
@@ -85,4 +98,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tweet::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function likes(): HasMany
+    {
+        return $this->hasMany(Like::class);
+    }
+
 }
