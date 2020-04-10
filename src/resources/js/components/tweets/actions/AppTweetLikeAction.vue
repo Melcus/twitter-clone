@@ -48,9 +48,8 @@
             }),
 
             likeOrUnlike() {
-                console.log(this.tweet)
                 if (this.liked) {
-                    this.unlikeTweet(this.tweet)
+                    this.unlikeTweet(this.tweet);
                     return
                 }
 

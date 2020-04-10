@@ -2,12 +2,15 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import Vuex from 'vuex'
+
 Vue.use(Vuex);
 
 import VueObserveVisibilityPlugin from "vue-observe-visibility";
+
 Vue.use(VueObserveVisibilityPlugin);
 
 import {InlineSvgPlugin} from 'vue-inline-svg';
+
 Vue.use(InlineSvgPlugin);
 
 Vue.prototype.$user = User;
@@ -45,3 +48,12 @@ const app = new Vue({
     el: '#app',
     store
 });
+
+
+Echo.channel('tweets')
+    .listen('.TweetLikesWereUpdated', (e) => {
+        if(e.user_id === User.id) {
+            store.dispatch('likes/syncLike', e.id)
+        }
+        store.commit('timeline/SET_LIKES', e)
+    });

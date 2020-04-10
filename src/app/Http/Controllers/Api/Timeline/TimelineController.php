@@ -19,7 +19,9 @@ class TimelineController extends Controller
             ->latest()
             ->with([
                 'user',
-                'originalTweet'
+                'originalTweet' => function ($query) {
+                    $query->withCount('likes');
+                }
             ])
             ->withCount('likes')
             ->paginate(12);
