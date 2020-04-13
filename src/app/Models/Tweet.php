@@ -38,4 +38,12 @@ class Tweet extends Model
     {
         return $this->hasMany(Like::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function retweets(): HasMany
+    {
+        return $this->hasMany(Tweet::class, 'original_tweet_id');
+    }
 }

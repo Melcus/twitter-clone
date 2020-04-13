@@ -20,10 +20,17 @@ class TimelineController extends Controller
             ->with([
                 'user',
                 'originalTweet' => function ($query) {
-                    $query->withCount('likes');
+                    $query
+                        ->withCount('likes', 'retweets')
+                        ->with([
+                            'user',
+                            'originalTweet' => function ($query) {
+                                $query->withCount('likes', 'retweets');
+                            }
+                        ]);
                 }
             ])
-            ->withCount('likes')
+            ->withCount('likes', 'retweets')
             ->paginate(12);
 
         return new TweetCollection($tweets);

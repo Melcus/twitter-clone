@@ -30,11 +30,13 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 
 import timeline from "./store/timeline";
 import likes from "./store/likes";
+import retweets from "./store/retweets";
 
 const store = new Vuex.Store({
     modules: {
         timeline,
-        likes
+        likes,
+        retweets
     }
 })
 

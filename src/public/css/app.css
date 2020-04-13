@@ -9834,6 +9834,10 @@ video {
   box-shadow: none;
 }
 
+.shadow-light {
+  box-shadow: 0 0 15px 0 rgba(255, 255, 255, .1);
+}
+
 .hover\:shadow-xs:hover {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
@@ -9874,6 +9878,10 @@ video {
   box-shadow: none;
 }
 
+.hover\:shadow-light:hover {
+  box-shadow: 0 0 15px 0 rgba(255, 255, 255, .1);
+}
+
 .focus\:shadow-xs:focus {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
@@ -9912,6 +9920,10 @@ video {
 
 .focus\:shadow-none:focus {
   box-shadow: none;
+}
+
+.focus\:shadow-light:focus {
+  box-shadow: 0 0 15px 0 rgba(255, 255, 255, .1);
 }
 
 .fill-current {
@@ -23162,6 +23174,10 @@ a {
     box-shadow: none;
   }
 
+  .md\:shadow-light {
+    box-shadow: 0 0 15px 0 rgba(255, 255, 255, .1);
+  }
+
   .md\:hover\:shadow-xs:hover {
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
   }
@@ -23202,6 +23218,10 @@ a {
     box-shadow: none;
   }
 
+  .md\:hover\:shadow-light:hover {
+    box-shadow: 0 0 15px 0 rgba(255, 255, 255, .1);
+  }
+
   .md\:focus\:shadow-xs:focus {
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
   }
@@ -23240,6 +23260,10 @@ a {
 
   .md\:focus\:shadow-none:focus {
     box-shadow: none;
+  }
+
+  .md\:focus\:shadow-light:focus {
+    box-shadow: 0 0 15px 0 rgba(255, 255, 255, .1);
   }
 
   .md\:fill-current {
@@ -36483,6 +36507,10 @@ a {
     box-shadow: none;
   }
 
+  .lg\:shadow-light {
+    box-shadow: 0 0 15px 0 rgba(255, 255, 255, .1);
+  }
+
   .lg\:hover\:shadow-xs:hover {
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
   }
@@ -36523,6 +36551,10 @@ a {
     box-shadow: none;
   }
 
+  .lg\:hover\:shadow-light:hover {
+    box-shadow: 0 0 15px 0 rgba(255, 255, 255, .1);
+  }
+
   .lg\:focus\:shadow-xs:focus {
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
   }
@@ -36561,6 +36593,10 @@ a {
 
   .lg\:focus\:shadow-none:focus {
     box-shadow: none;
+  }
+
+  .lg\:focus\:shadow-light:focus {
+    box-shadow: 0 0 15px 0 rgba(255, 255, 255, .1);
   }
 
   .lg\:fill-current {
@@ -49804,6 +49840,10 @@ a {
     box-shadow: none;
   }
 
+  .xl\:shadow-light {
+    box-shadow: 0 0 15px 0 rgba(255, 255, 255, .1);
+  }
+
   .xl\:hover\:shadow-xs:hover {
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
   }
@@ -49844,6 +49884,10 @@ a {
     box-shadow: none;
   }
 
+  .xl\:hover\:shadow-light:hover {
+    box-shadow: 0 0 15px 0 rgba(255, 255, 255, .1);
+  }
+
   .xl\:focus\:shadow-xs:focus {
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
   }
@@ -49882,6 +49926,10 @@ a {
 
   .xl\:focus\:shadow-none:focus {
     box-shadow: none;
+  }
+
+  .xl\:focus\:shadow-light:focus {
+    box-shadow: 0 0 15px 0 rgba(255, 255, 255, .1);
   }
 
   .xl\:fill-current {
