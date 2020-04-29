@@ -54,4 +54,12 @@ class Tweet extends Model
     {
         return $this->hasOne(Tweet::class, 'original_tweet_id', 'id');
     }
+
+    /**
+     * @return HasMany
+     */
+    public function media(): hasMany
+    {
+        return $this->hasMany(TweetMedia::class);
+    }
 }

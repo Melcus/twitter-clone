@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Media\MediaController;
 use App\Http\Controllers\Api\Media\MediaTypesController;
 use App\Http\Controllers\Api\Timeline\TimelineController;
 use App\Http\Controllers\Api\Tweets\TweetController;
@@ -28,7 +29,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/tweets/{tweet}/retweets', [TweetRetweetController::class, 'destroy']);
 
     Route::get('/media/types', [MediaTypesController::class, 'index']);
+
+
 });
 
+Route::post('/media', [MediaController::class, 'store']);
 
 
