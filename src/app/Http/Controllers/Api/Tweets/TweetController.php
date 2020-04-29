@@ -6,6 +6,9 @@ use App\Events\Tweets\TweetWasCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Tweets\TweetStoreRequest;
 use App\Prototypes\Tweets\TweetType;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\Response;
 
 /**
  * Class TweetController
@@ -15,6 +18,7 @@ class TweetController extends Controller
 {
     /**
      * @param TweetStoreRequest $request
+     * @return Application|ResponseFactory|Response
      */
     public function store(TweetStoreRequest $request)
     {
@@ -23,5 +27,7 @@ class TweetController extends Controller
         ]));
 
         broadcast(new TweetWasCreated($tweet));
+
+        return response(null, 204);
     }
 }

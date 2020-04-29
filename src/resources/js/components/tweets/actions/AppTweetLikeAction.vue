@@ -41,7 +41,6 @@
 
         },
         methods: {
-
             ...mapActions({
                 likeTweet: 'likes/likeTweet',
                 unlikeTweet: 'likes/unlikeTweet',
