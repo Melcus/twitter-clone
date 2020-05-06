@@ -4,6 +4,8 @@
             <app-tweet-compose/>
         </div>
 
+        <div class="p-4 border-gray-800 border-b text-gray-300" v-if="!tweets.length">It's pretty quiet around here.</div>
+
         <app-tweet
             v-for="tweet in tweets"
             :key="tweet.id"

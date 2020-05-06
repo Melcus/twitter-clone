@@ -71,8 +71,13 @@
         },
         methods: {
             async submit() {
+                let media = await this.uploadMedia()
+
+                this.form.media = media.data.data.map(entry => entry.id)
+
                 await axios.post('/api/tweets', this.form)
-                this.form.body = ''
+
+                this.resetForm()
             },
 
             async getMediaTypes() {
@@ -105,6 +110,35 @@
                 this.media.images = this.media.images.filter((i) => {
                     return image !== i
                 })
+            },
+            buildMediaForm() {
+                let form = new FormData()
+
+                if (this.media.images.length) {
+                    this.media.images.forEach((image, index) => {
+                        form.append(`media[${index}]`, image)
+                    })
+                }
+
+                if (this.media.video) {
+                    form.append('media[0]', this.media.video)
+                }
+
+                return form
+            },
+
+            async uploadMedia() {
+                return await axios.post('/api/media', this.buildMediaForm(), {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+            },
+            resetForm() {
+                this.form.body = ''
+                this.form.media = []
+                this.media.video = null
+                this.media.images = []
             }
         },
 
