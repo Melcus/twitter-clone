@@ -11,11 +11,18 @@
 |
 */
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Notifications\NotificationController;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
+});
+
 

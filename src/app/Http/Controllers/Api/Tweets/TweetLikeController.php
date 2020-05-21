@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Tweets;
 use App\Events\Tweets\TweetLikesWereUpdated;
 use App\Http\Controllers\Controller;
 use App\Models\Tweet;
+use App\Notifications\Tweets\TweetLiked;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -32,6 +33,10 @@ class TweetLikeController extends Controller
         ]);
 
         broadcast(new TweetLikesWereUpdated($request->user(), $tweet));
+
+//        if ($request->user()->id !== $tweet->user_id) {
+            $tweet->user->notify(new TweetLiked($request->user(), $tweet));
+//        }
 
         return response(null, 204);
     }

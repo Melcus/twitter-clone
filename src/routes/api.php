@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Media\MediaController;
 use App\Http\Controllers\Api\Media\MediaTypesController;
+use App\Http\Controllers\Api\Notifications\NotificationController;
 use App\Http\Controllers\Api\Timeline\TimelineController;
 use App\Http\Controllers\Api\Tweets\TweetController;
 use App\Http\Controllers\Api\Tweets\TweetLikeController;
@@ -23,6 +24,8 @@ use App\Http\Controllers\Api\Tweets\TweetRetweetController;
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/timeline', [TimelineController::class, 'index']);
     Route::post('/tweets', [TweetController::class, 'store']);
+
+    Route::get('/notifications', [NotificationController::class, 'index']);
 
     Route::post('/tweets/{tweet}/replies', [TweetReplyController::class, 'store']);
 
