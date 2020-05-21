@@ -7,7 +7,7 @@
             <app-dropdown-item @click.prevent="retweetOrUnRetweet">
                 Retwoot
             </app-dropdown-item>
-            <app-dropdown-item>
+            <app-dropdown-item @click.prevent="$modal.show(TweetRetweetModal, {tweet})">
                 Retwoot with comment
             </app-dropdown-item>
         </app-dropdown>
@@ -18,6 +18,7 @@
 
 <script>
     import {mapGetters, mapActions} from 'vuex'
+    import TweetRetweetModal from "../../modals/TweetRetweetModal";
 
     export default {
         props: {
@@ -26,6 +27,13 @@
                 type: Object
             }
         },
+
+        data() {
+            return {
+                TweetRetweetModal
+            }
+        },
+
         computed: {
             ...mapGetters({
                 retweets: 'retweets/retweets'
@@ -34,6 +42,7 @@
                 return this.retweets.includes(this.tweet.id)
             }
         },
+
         methods: {
             ...mapActions({
                 retweetTweet: 'retweets/retweetTweet',

@@ -13,6 +13,19 @@ import {InlineSvgPlugin} from 'vue-inline-svg';
 
 Vue.use(InlineSvgPlugin);
 
+import VModal from "vue-js-modal";
+
+Vue.use(VModal, {
+    dynamic: true,
+    injectModalsContainer: true,
+    dynamicDefaults: {
+        pivotY: 0.1,
+        height: 'auto',
+        classes: '!bg-gray-900 rounded-lg p-4'
+    }
+})
+
+
 Vue.prototype.$user = User;
 
 /**
@@ -54,13 +67,13 @@ const app = new Vue({
 
 Echo.channel('tweets')
     .listen('.TweetLikesWereUpdated', (e) => {
-        if(e.user_id === User.id) {
+        if (e.user_id === User.id) {
             store.dispatch('likes/syncLike', e.id)
         }
         store.commit('timeline/SET_LIKES', e)
     })
     .listen('.TweetRetweetsWereUpdated', (e) => {
-        if(e.user_id === User.id) {
+        if (e.user_id === User.id) {
             store.dispatch('retweets/syncRetweet', e.id)
         }
         store.commit('timeline/SET_RETWEETS', e)

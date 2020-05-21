@@ -17,7 +17,7 @@
 
     <script>
         window.User = {
-            id : {{ auth()->id() }},
+            id: {{ auth()->id() ?: 0 }},
             avatar: '{{ optional(auth()->user())->avatar() }}'
         }
     </script>
@@ -26,6 +26,8 @@
 <div id="app">
     <main class="container mx-auto">
         @yield('content')
+
+        <modals-container/>
     </main>
 </div>
 </body>
