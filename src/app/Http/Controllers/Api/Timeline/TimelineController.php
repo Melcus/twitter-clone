@@ -16,23 +16,24 @@ class TimelineController extends Controller
     {
         $tweets = $request->user()
             ->tweetsFromFollowing()
+            ->parent()
             ->latest()
             ->with([
                 'user',
                 'media.baseMedia',
                 'originalTweet' => function ($query) {
                     $query
-                        ->withCount('likes', 'retweets')
+                        ->withCount('likes', 'retweets', 'replies')
                         ->with([
                             'user',
                             'media.baseMedia',
                             'originalTweet' => function ($query) {
-                                $query->withCount('likes', 'retweets');
+                                $query->withCount('likes', 'retweets', 'replies');
                             }
                         ]);
                 }
             ])
-            ->withCount('likes', 'retweets')
+            ->withCount('likes', 'retweets', 'replies')
             ->paginate(12);
 
         return new TweetCollection($tweets);

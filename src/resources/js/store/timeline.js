@@ -65,6 +65,27 @@ export default {
             })
         },
 
+        SET_REPLIES(state, {id, count}) {
+            state.tweets = state.tweets.map((tweet) => {
+                // Normal Tweet case
+                if (tweet.id === id) {
+                    tweet.replies_count = count
+                }
+
+                // Retweet or quote case
+                if (get(tweet, 'original_tweet.id') === id) {
+                    tweet.original_tweet.replies_count = count
+                }
+
+                // Retweet of a quote case
+                if (get(tweet, 'original_tweet.original_tweet.id') === id) {
+                    tweet.original_tweet.original_tweet.replies_count = count
+                }
+
+                return tweet
+            })
+        },
+
         REMOVE_TWEET(state, id) {
             state.tweets = state.tweets.filter((t) => {
                 return t.id !== id
@@ -83,6 +104,10 @@ export default {
 
         async quoteTweet({_}, {tweet, data}) {
             await axios.post(`/api/tweets/${tweet.id}/quotes`, data)
+        },
+
+        async replyToTweet({_}, {tweet, data}) {
+            await axios.post(`/api/tweets/${tweet.id}/replies`, data)
         }
     }
 }

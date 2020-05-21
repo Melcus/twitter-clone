@@ -17,12 +17,13 @@ class CreateTweetsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->index();
             $table->foreignId('original_tweet_id')->index()->nullable();
+            $table->foreignId('parent_id')->unsigned()->index()->nullable();
             $table->text('body')->nullable();
             $table->string('type');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('original_tweet_id')->references('id')->on('tweets');
+            $table->foreign('parent_id')->references('id')->on('tweets')->onDelete('cascade');
         });
     }
 
