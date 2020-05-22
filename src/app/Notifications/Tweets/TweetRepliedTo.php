@@ -13,10 +13,10 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 /**
- * Class TweetLiked
+ * Class TweetRepliedTo
  * @package App\Notifications\Tweets
  */
-class TweetLiked extends Notification
+class TweetRepliedTo extends Notification
 {
     use Queueable;
 

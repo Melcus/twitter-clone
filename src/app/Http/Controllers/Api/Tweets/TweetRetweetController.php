@@ -32,6 +32,7 @@ class TweetRetweetController extends Controller
         ]);
 
         broadcast(new TweetWasCreated($retweet));
+
         broadcast(new TweetRetweetsWereUpdated($request->user(), $tweet));
 
         return response(null, 204);

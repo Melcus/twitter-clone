@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Processors\EntityExtractor;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,6 +16,17 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Tweet extends Model
 {
     protected $guarded = [];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function (Tweet $tweet) {
+            $tweet->entities()->createMany(
+                (new EntityExtractor($tweet->body))->getAllEntities()
+            );
+        });
+    }
 
     public function scopeParent(Builder $builder)
     {
@@ -54,5 +66,10 @@ class Tweet extends Model
     public function replies(): hasMany
     {
         return $this->hasMany(Tweet::class, 'parent_id');
+    }
+
+    public function entities(): hasMany
+    {
+        return $this->hasMany(Entity::class);
     }
 }

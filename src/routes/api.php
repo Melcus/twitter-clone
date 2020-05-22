@@ -23,6 +23,8 @@ use App\Http\Controllers\Api\Tweets\TweetRetweetController;
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/timeline', [TimelineController::class, 'index']);
+
+    Route::get('/tweets', [TweetController::class, 'index']);
     Route::post('/tweets', [TweetController::class, 'store']);
 
     Route::get('/notifications', [NotificationController::class, 'index']);
