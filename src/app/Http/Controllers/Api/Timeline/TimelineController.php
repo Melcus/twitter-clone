@@ -20,12 +20,14 @@ class TimelineController extends Controller
             ->latest()
             ->with([
                 'user',
+                'entities',
                 'media.baseMedia',
                 'originalTweet' => function ($query) {
                     $query
                         ->withCount('likes', 'retweets', 'replies')
                         ->with([
                             'user',
+                            'entities',
                             'media.baseMedia',
                             'originalTweet' => function ($query) {
                                 $query->withCount('likes', 'retweets', 'replies');

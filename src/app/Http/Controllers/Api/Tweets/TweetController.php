@@ -8,6 +8,8 @@ use App\Http\Requests\Tweets\TweetStoreRequest;
 use App\Http\Resources\TweetCollection;
 use App\Models\Tweet;
 use App\Models\TweetMedia;
+use App\Models\User;
+use App\Notifications\Tweets\TweetMentionedIn;
 use App\Prototypes\Tweets\TweetType;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -57,6 +59,12 @@ class TweetController extends Controller
         foreach ($request->media as $id) {
             $tweet->media()->save(TweetMedia::find($id));
         }
+
+        $tweet->mentions->users()->each(function (User $user) use ($request, $tweet) {
+            if ($request->user()->id !== $user->id) {
+                $user->notify(new TweetMentionedIn($request->user(), $tweet));
+            }
+        });
 
         broadcast(new TweetWasCreated($tweet));
 

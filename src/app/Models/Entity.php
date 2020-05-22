@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Prototypes\Entity\EntityDatabaseCollection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -11,4 +12,9 @@ use Illuminate\Database\Eloquent\Model;
 class Entity extends Model
 {
     protected $guarded = [];
+
+    public function newCollection(array $models = [])
+    {
+        return new EntityDatabaseCollection($models);
+    }
 }

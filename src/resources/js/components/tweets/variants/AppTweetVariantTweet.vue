@@ -4,7 +4,7 @@
         <div class="flex-grow">
             <app-tweet-username :user="tweet.user"/>
 
-            <p class="text-gray-300 whitespace-pre-wrap">{{ tweet.body }}</p>
+            <app-tweet-body :tweet="tweet"/>
 
             <div class="flex flex-wrap my-4" v-if="images.length">
                 <div
@@ -29,7 +29,9 @@
 </template>
 
 <script>
+    import AppTweetBody from "../AppTweetBody";
     export default {
+        components: {AppTweetBody},
         props: {
             tweet: {
                 required: true,
